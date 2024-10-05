@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação de Slides</title>
+    <link rel="stylesheet" href="slides.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #6cb8e1;
+        }
+
+        .slide-container {
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #333;
+        }
+
+        .controls button {
+            background-color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #8ec1db;
+        }
+        .btn {
+           background-color: #6cb8e1;
+           border: 1px solid rgb(121, 121, 121);
+           border-radius: 10px;
+           font-family: 'Open Sans', sans-serif;
+           color: black;
+           width: 120px ;
+           text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <div class="slide active">
+            <h2>Slide 1</h2>
+            <p>Este é o conteúdo do primeiro slide.</p>
+        </div>
+        <div class="slide">
+            <h2>Slide 2</h2>
+            <p>Este é o conteúdo do segundo slide.</p>
+        </div>
+        <div class="slide">
+            <h2>Slide 3</h2>
+            <p>Este é o conteúdo do terceiro slide.</p>
+        </div>
+
+        <div class="controls">
+            <button id="prev">Anterior</button>
+            <a  class="btn"   href="/index.html"><strong>Return</strong></a>
+            <button id="next">Próximo</button>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        document.getElementById('next').addEventListener('click', () => {
+            changeSlide(1);
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            changeSlide(-1);
+        });
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+    </script>
+    
+
+</body>
+</html>
